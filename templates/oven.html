@@ -1,0 +1,35 @@
+{% extends "page.html" %}
+{% block title %}Oven Control{% endblock %}
+{% block heading %}Oven Control{% endblock %}
+{% block content %}
+  <p>Toaster oven reflow controller</p>
+  <div id="oven">
+    Select reflow profile:
+    <div class="indent"><select id="profile-selector"></select></div>
+    <h2>Status:</h2>
+    <div class="indent">
+      <div class="monitor"><h3>Reflow Phase:</h3> <p id="reflow-phase"></div>
+      <div class="monitor"><h3>Heater:</h3> <p id="heater-state"></div>
+      <div class="monitor"><h3>Fan:</h3> <p id="fan-state"></div>
+      <div class="monitor"><h3>Temperature:</h3> <p id="temperature"></div>
+    </div>
+
+    <div id="profile-display-container">
+      <div id="profile-display"></div>
+    </div>
+    <button id="start-reflow" type="button" onclick="startReflow();">Start reflow</button>
+    <button id="stop-reflow" type="button" onclick="stopReflow();">Stop reflow</button> 
+    <button id="clear-plot" type="button" onclick="drawProfileDisplay();">Clear realtime data</button> 
+  </div>
+
+  <div id="manual-control">
+    <h2>Manual control:</h2>
+    <div class="indent">
+      <button id="heater-on" type="button" onclick="setHeater('on');">Heater on</button>
+      <button id="heater-off" type="button" onclick="setHeater('off');">Heater off</button> 
+      <br />
+      <button id="fan-on" type="button" onclick="setFan('on');">Fan on</button>
+      <button id="fan-off" type="button" onclick="setFan('off');">Fan off</button>
+    </div>
+  </div>
+{% endblock %}
