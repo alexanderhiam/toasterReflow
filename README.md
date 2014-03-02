@@ -1,6 +1,5 @@
-
 # toasterReflow
-#### Copyright (c) 2013 - Alexander Hiam - <ahiam@marlboro.edu>
+#### Copyright (c) 2013 - Alexander Hiam - <hiamalexander@gmail.com>
 
 This is the start of a reflow oven control program, intended for use with
 converted toaster ovens. It currently runs on the BeagleBone using 
