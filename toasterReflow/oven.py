@@ -12,13 +12,15 @@ from profiles import *
 from PID import *
 
 from bbio import *
-from MAX31855 import *
+#from MAX31855 import *
+from fs9721 import Client
 
 class Oven(object):
   def __init__(self, heater_pin, temp_cs, temp_clk, temp_data,  fan_pin=None):
     self.heater_pin = heater_pin
     self.fan_pin= fan_pin
-    self.thermocouple = MAX31855(temp_data, temp_clk, temp_cs, TEMP_OFFSET)
+    #self.thermocouple = MAX31855(temp_data, temp_clk, temp_cs, TEMP_OFFSET)
+    self.thermocouple = Client('/dev/ttyUSB0')
     self.pid = PID(PID_KP, PID_KI, PID_KD)
 
     pinMode(heater_pin, OUTPUT)
@@ -127,7 +129,7 @@ class Oven(object):
     for i in range(10):
       # readTempC() return None if error; try a few times to make
       # sure error isn't just a hiccup before aborting current reflow.
-      temp = self.thermocouple.readTempC()
+      temp = self.thermocouple.getMeasurement().value
       if temp:
         if (temp > 100): print '\n%s\n' % temp
         return temp
